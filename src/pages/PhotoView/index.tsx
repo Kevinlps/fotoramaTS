@@ -1,5 +1,4 @@
 
-import { useNavigate } from 'react-router-dom'
 import * as C from './styles'
 
 const PhotoView = () => {
@@ -17,7 +16,7 @@ const PhotoView = () => {
       navegateBack()
     }
 
-
+  const dateCriation = localStorage.getItem('data')
   const value: any = localStorage.getItem('photoSmall')
   const description = localStorage.getItem('description')
   const descriptionNotNull = () => {
@@ -32,10 +31,13 @@ const PhotoView = () => {
   return (
     <C.Container>
       <C.Card>
-        <img src={value} alt={description || 'Não possui descrição'} />
-        <span>
+        <C.ImageSmall src={value} alt={description || 'Não possui descrição'} />
+        <C.SpanDescription>
           {descriptionNotNull()}
-        </span>
+        </C.SpanDescription>
+        <C.SpanCreationDate>
+          {dateCriation}
+        </C.SpanCreationDate>
         <C.ButtonBack onClick={() => handleclik()} >Voltar</C.ButtonBack>
 
       </C.Card>

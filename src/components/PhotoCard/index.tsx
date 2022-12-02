@@ -28,6 +28,8 @@ const PhotoCard = ({ photo }: Props) => {
     localStorage.setItem('id', getId);
     localStorage.setItem('description',photo.description);
     localStorage.setItem('photoSmall',photo.smallUrl);
+    localStorage.setItem('data', photo.creationDate.toLocaleDateString());
+
   };
   const navegateView = () =>{
     navegate('/view')
