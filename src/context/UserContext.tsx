@@ -1,7 +1,2 @@
-import { createContext } from "react";
+import { createContext, ReactNode, useState } from 'react'
 
-
-
-const UserContext= createContext({})
-
-export default UserContext
