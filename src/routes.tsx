@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom'
 import Home from './pages/Home'
-import PhotoView from './pages/PhotoView'
+import GifView from './pages/GifView'
 
 export const routes: RouteObject[] = [
   {
@@ -9,6 +9,6 @@ export const routes: RouteObject[] = [
   },
   {
     path: '/view',
-    element: <PhotoView/>,
+    element: <GifView/>,
   },
 ]

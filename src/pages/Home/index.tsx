@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
-import { Photo } from '../../models/Photo'
-import { PhotoService } from '../../service/PhotoService'
+import { GifClass } from '../../models/GifClass'
+import { GifService } from '../../service/GifService'
 import {
   Container,
   CurrentPage,
@@ -14,29 +14,29 @@ import {
   SearchButton,
 } from './styles'
 import loadingGif from '../../assets/img/loading.gif'
-import PhotoCard from '../../components/PhotoCard'
+import GifCard from '../../components/GifCard'
 
 const Home = () => {
-  const [photos, setPhotos] = useState<Photo[]>([])
+  const [gifs, setGifs] = useState<GifClass[]>([])
   const [filter, setFilter] = useState('')
   const [page, setPage] = useState(1)
   const [perPage, setPerpage] = useState(16)
   const [totalPages, setTotalPages] = useState(0)
   const [loading, isLoading] = useState(false)
 
-  const photoService = new PhotoService()
+  const gifService = new GifService()
 
-  const searchPhotos = async () => {
+  const searchGifs = async () => {
     isLoading(true)
-    setPhotos([])
-    const photosFound = await photoService.findPhotos(filter, page, perPage)
-    setPhotos(photosFound.photos)
-    setTotalPages(photosFound.totalPages)
+    setGifs([])
+    const gifsFound = await gifService.findGifs(filter, page, perPage)
+    setGifs(gifsFound.gifs)
+    setTotalPages(gifsFound.totalPages)
     isLoading(false)
   }
 
   useEffect(() => {
-    searchPhotos()
+    searchGifs()
   }, [page])
 
   return (
@@ -48,14 +48,14 @@ const Home = () => {
           onChange={(e) => setFilter(e.target.value)}
         />
 
-        <SearchButton onClick={() => searchPhotos()}>Buscar</SearchButton>
+        <SearchButton onClick={() => searchGifs()}>Buscar</SearchButton>
       </SearchArea>
 
       <ResultsArea>
         {loading && <Loading src={loadingGif} alt='Carregando resultados' />}
 
-        {photos.length > 0 &&
-          photos.map((p) => <PhotoCard key={p.id} photo={p} />)}
+        {gifs.length > 0 &&
+          gifs.map((p) => <GifCard key={p.id} gif={p} />)}
       </ResultsArea>
 
       {totalPages > 1 && (
